@@ -1,4 +1,4 @@
-#include "Stack.h"
+#include "Stack_array.h"
 void StackCheckCapacity(Stack* ps){
     assert(ps);
     if(ps->top==ps->capacity){

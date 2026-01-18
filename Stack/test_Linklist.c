@@ -1,4 +1,4 @@
-#include "Stack.h"
+#include "Stack_LinkList.h"
 int main() {
     Stack st;
     StackInit(&st);  
@@ -6,12 +6,12 @@ int main() {
     StackPush(&st, 2);
     StackPush(&st, 3);
     printf("%d\n", StackSize(&st));  
-    printf("%d\n", StackTop(&st));          
-    StackPop(&st);
-    printf("%d\n", StackTop(&st));  
+    printf("%d\n", StackTop(&st)); 
     StackPop(&st);
     printf("%d\n", StackTop(&st)); 
-    printf("%d\n", StackEmpty(&st));  
+    StackPop(&st);
+    printf("%d\n", StackTop(&st)); 
+    printf("%d\n", StackEmpty(&st));    
     StackDestroy(&st);
     return 0;
 }

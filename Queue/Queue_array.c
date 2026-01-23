@@ -11,6 +11,7 @@ void QueueDestroy(Queue* pq){
 }
 void QueuePush(Queue* pq, QTdatatype x){
     assert(pq);
+    assert((pq->last + 1) % QUEUE_CAPACITY != pq->front);
     pq->a[pq->last] = x;
     pq->last=(pq->last + 1) % QUEUE_CAPACITY;
 }

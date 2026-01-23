@@ -47,7 +47,7 @@ class ArrayQueue {
     bool isEmpty() {
         return first == last;  
     }
-    bool isFull() const {
+    bool isFull(){
         return (last + 1) % capacity == first;
     }
     int size(){

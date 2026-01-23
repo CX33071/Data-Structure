@@ -1,14 +1,13 @@
 #include <iostream>
 using namespace std;
 template <typename T>
-struct ListNode {
-    T val;
-    ListNode* next;
-    ListNode(T v) : val(v), next(nullptr) {}
-};
-template <typename T>
 class LinkedStack {
    private:
+    struct ListNode {
+        T val;
+        ListNode* next;
+        ListNode(T v) : val(v), next(nullptr) {}
+    };
     ListNode<T>* topNode;  
     int count;            
    public:

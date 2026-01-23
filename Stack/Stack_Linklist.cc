@@ -66,6 +66,8 @@ class LinkedStack {
     LinkedStack& operator=(const LinkedStack&) = delete;
 };
 int main() {
+    // LinkedStack<int> s2 = s1;  编译报错拷贝构造函数已被删除
+    // LinkedStack<int> s4;s4 = s1;  编译报错赋值运算符已被删除
     LinkedStack<string> stack;
     stack.push("C++");
     stack.push("Java");

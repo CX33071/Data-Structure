@@ -147,8 +147,8 @@ int BinaryTreeLeafSize(BTNode* root) {
     }
     if (root->left == NULL && root->right == NULL) {
         return 1;
-        return BinaryTreeLeafSize(root->left) + BinaryTreeLeafSize(root->right);
     }
+        return BinaryTreeLeafSize(root->left) + BinaryTreeLeafSize(root->right);
 }
 BTNode* BinaryTreeFind(BTNode* root, BTdatatype x) {
     if (root == NULL) {

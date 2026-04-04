@@ -8,7 +8,7 @@ class LinkedStack {
         ListNode* next;
         ListNode(T v) : val(v), next(nullptr) {}
     };
-    ListNode<T>* topNode;  
+    ListNode* topNode;  
     int count;            
    public:
     LinkedStack() : topNode(nullptr), count(0) {}
@@ -16,7 +16,7 @@ class LinkedStack {
         clear(); 
     }
     void push(T val) {
-        ListNode<T>* newNode = new ListNode<T>(val);
+        ListNode* newNode = new ListNode<T>(val);
         newNode->next = topNode;  
         topNode = newNode;        
         count++;

@@ -33,7 +33,7 @@ class LinkQueue {
             last = newNode;                
             size++;                       
     }
-    void pop() {
+    void pop() {  // 队列带头结点，first是头结点（永远不为nullptr），正确判空应为first->next== nullptr；头结点是哨兵节点（不存有效数据），出队应删除first->next（队头有效节点），而非直接删除first（头结点）； 
         if (isEmpty()) {
             return;
         }
@@ -43,7 +43,7 @@ class LinkQueue {
             last = first;
         }
         delete temp;  
-        size--;        
+        size--;
     }
     T front() {
         if (isEmpty()) {

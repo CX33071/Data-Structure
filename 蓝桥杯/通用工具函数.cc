@@ -44,6 +44,7 @@ bool is_leap(int y){
     return y % 400 == 0 || (y % 4 == 0 && y % 100 != 0);
 }
 //快速幂
+//位运算更快、先取模、long long
 long long quick_pow(long long a,long long b,long long mod_num){
     long long res = 1;
     a %= mod_num;
@@ -56,7 +57,19 @@ long long quick_pow(long long a,long long b,long long mod_num){
     }
     return res;
 }
-//素数筛(埃氏筛)找1~n的素数
+long long qpow(long long a,long long b){
+    int res = 1;
+    while(b){
+        if(b&1){
+            res = res * a;
+        }
+        a = a * a;
+        b >>= 1;
+    }
+    return res;
+}
+// 快速幂求逆元：前提：mod是质数，逆元 = a^(mod-2) % mod（费马小定理）
+// 素数筛(埃氏筛)找1~n的素数
 bool is_prime[100000];
 void get_prime(int n){
     memset(is_prime, true, sizeof(is_prime));
@@ -90,6 +103,6 @@ bool is_prime2(int n){
 //分解质因数，把一个数拆成质因数乘积
 void prime_factor(long long n){
     for (long long i = 2; i * i <= n;i++){
-        
+
     }
 }

@@ -1,7 +1,16 @@
 #include <bits/stdc++.h>
+//交换两个数
+void swap(int &a,int &b){
+    int temp = a;
+    a = b;
+    b = temp;
+}
 //最大公约数
 int gcd(int a,int b){
-    return b ? gcd(b, a % b) : abs(a);
+    if(b==0){
+        return a;
+    }
+    return gcd(b, a % b);
 }
 //最小公倍数
 int lcm(int a,int b){

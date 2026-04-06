@@ -42,7 +42,7 @@ int main(){
     //排序
     sort(s.begin(), s.end());
     //大小写转换
-    char up = toupper('a');
+    char up = toupper('a');//错误，toupper返回的是字符ASCII码，要用char强转
     char low = tolower('A');
     //字符串大小写转换
     std::string s = "hello";

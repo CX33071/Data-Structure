@@ -138,6 +138,20 @@ std::vector<std::pair<int,int>> factorize(int n){
     }
     return factors;
 }
+#include <math.h>
+#include <stdio.h>
+int main() {
+    int n;
+    scanf("%d", &n);
+    for (int i = 2; i <= sqrt(n); i++) {
+        if (n % i == 0) {
+            int other = n / i;
+            printf("%d\n", (i > other) ? i : other);
+            return 0;
+        }
+    }
+    return 0;
+}
 //组合数
 long long C(int n,int m){
     if(m<0||m>n){
@@ -206,6 +220,140 @@ int main() {
     vector<int> ret = add(a,b);
     for (int i = ret.size(); i >= 0;i--){
         cout << ret[i];
+    }
+    return 0;
+}
+//回文质数
+#include <math.h>
+#include <stdio.h>
+
+// 判断质数
+int isPrime(int num) {
+    if (num <= 1)
+        return 0;
+    if (num == 2)
+        return 1;
+    if (num % 2 == 0)
+        return 0;
+    for (int i = 3; i * i <= num; i += 2) {
+        if (num % i == 0)
+            return 0;
+    }
+    return 1;
+}
+
+// 判断回文数（正确版）
+int isPalindrome(int num) {
+    int original = num;
+    int reversed = 0;
+    while (num > 0) {
+        reversed = reversed * 10 + num % 10;
+        num /= 10;
+    }
+    return original == reversed;
+}
+
+// 获取数字位数
+int getLen(int num) {
+    int cnt = 0;
+    while (num > 0) {
+        cnt++;
+        num /= 10;
+    }
+    return cnt;
+}
+
+int main() {
+    int a, b;
+    scanf("%d %d", &a, &b);
+
+    for (int i = a; i <= b; i++) {
+        // 核心优化：除了11，偶数位回文数一定不是质数，直接跳过
+        int len = getLen(i);
+        if (len % 2 == 0 && i != 11) {
+            // 跳过 2/4/6/8 位数（除11外）
+            continue;
+        }
+
+        if (isPalindrome(i) && isPrime(i)) {
+            printf("%d\n", i);
+        }
+    }
+    return 0;
+}
+//次方用pow(10,6),开方用sqrt
+//杨辉三角
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int n;
+    cin >> n;
+    int Carry[30][30];
+    for (int i = 0; i < n; i++) {
+        Carry[i][0] = Carry[i][i] = 1;
+        for (int j = 1; j < i; j++) {
+            Carry[i][j] = Carry[i - 1][j - 1] + Carry[i - 1][j];
+        }
+        for (int j = 0; j <= i; j++) {
+            cout << Carry[i][j] << " ";
+        }
+        cout << '\n';
+    }
+}
+// 回文质数：#include <stdio.h>
+#include <math.h>
+
+// 判断质数
+int isPrime(int num) {
+    if (num <= 1)
+        return 0;
+    if (num == 2)
+        return 1;
+    if (num % 2 == 0)
+        return 0;
+    for (int i = 3; i * i <= num; i += 2) {
+        if (num % i == 0)
+            return 0;
+    }
+    return 1;
+}
+
+// 判断回文数（正确版）
+int isPalindrome(int num) {
+    int original = num;
+    int reversed = 0;
+    while (num > 0) {
+        reversed = reversed * 10 + num % 10;
+        num /= 10;
+    }
+    return original == reversed;
+}
+
+// 获取数字位数
+int getLen(int num) {
+    int cnt = 0;
+    while (num > 0) {
+        cnt++;
+        num /= 10;
+    }
+    return cnt;
+}
+
+int main() {
+    int a, b;
+    scanf("%d %d", &a, &b);
+
+    for (int i = a; i <= b; i++) {
+        // 核心优化：除了11，偶数位回文数一定不是质数，直接跳过
+        int len = getLen(i);
+        if (len % 2 == 0 && i != 11) {
+            // 跳过 2/4/6/8 位数（除11外）
+            continue;
+        }
+
+        if (isPalindrome(i) && isPrime(i)) {
+            printf("%d\n", i);
+        }
     }
     return 0;
 }

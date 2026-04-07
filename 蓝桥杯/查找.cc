@@ -166,3 +166,8 @@ int findmin(std::vector<int>& a){
     }
     return a[l];
 }
+//如果想对unordered进行排序，需要倒进vector
+std::unordered_map<int, int> mp;
+std::vector<std::pair<int, int>> v(mp.begin(), mp.end());
+// sort(v.begin(), v.end());
+// sort(v.begin(), v.end(), [](auto a, auto b) { return a.second < b.second; });

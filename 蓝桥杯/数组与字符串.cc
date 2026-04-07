@@ -31,8 +31,9 @@ int main(){
 // 比较：int cmp=strcmp(s1,s2);相等返回0
 // string和char[]互转：string->char[]:s.c_str()      char s[10]="hello";string
 // str=s;直接赋值
-
-//常用算法，需要#include <algorithm>
+// 反转字符串 reverse(s.begin(),s.end());
+// s.insert(0, "-");-要加""
+// 常用算法，需要#include <algorithm>
 #include <iostream>
 #include <algorithm>
 int main(){
@@ -44,10 +45,10 @@ int main(){
     //大小写转换
     char up = toupper('a');//错误，toupper返回的是字符ASCII码，要用char强转
     char low = tolower('A');
-    //字符串大小写转换
+    //字符串大小写转换,必须加::,防止toupper编译报错
     std::string s = "hello";
-    std::transform(s.begin(), s.end(), s.begin(), tolower);
-    std::transform(s.begin(), s.end(), s.begin(), toupper);
+    std::transform(s.begin(), s.end(), s.begin(), ::tolower);
+    std::transform(s.begin(), s.end(), s.begin(), ::toupper);
 }
 //数字与字符串互转
 #include <string>
@@ -60,8 +61,9 @@ int main(){
     float d = std::stof("3.14");
     double e = std::stod("3.1415");
 }
-// 强转：int a=ststic_cast<int>(3.14);
-//遍历时修改字符串
+// 数字转字符 res += (char)('0' + rem)
+//  强转：int a=ststic_cast<int>(3.14);
+// 遍历时修改字符串
 #include <string>
 int main(){
     std::string s;
@@ -106,3 +108,4 @@ int cishu(std::string s){
     }
 }
 // 注意不要写i<=s.size()-1,可能溢出，因为size_t,应该写int n=s.size();i<=n-1;
+// 小写字母偏移：c=(c-'a'+n)%26+'a';

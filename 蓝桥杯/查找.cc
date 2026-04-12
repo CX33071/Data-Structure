@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+using namespace std;  
 // 线性查找	O(n)
 // 二分查找	O(log n)    前提是有序数组
 // lower_bound / upper_bound	O(log n)        前提是有序数组
@@ -20,7 +21,7 @@ int binarysearch(int a[],int n,int target){
     return -1;
 }
 // C++内置二分函数
-//  找第一个 ≥ target 的位置	lower_bound
+//  找找第一个 ≥ target 的位置	lower_bound
 //  找第一个 > target 的位置	upper_bound
 //  找最后一个 < target 的位置	upper_bound - 1
 //  找最后一个 ≤ target 的位置	upper_bound - 1
@@ -171,3 +172,81 @@ std::unordered_map<int, int> mp;
 std::vector<std::pair<int, int>> v(mp.begin(), mp.end());
 // sort(v.begin(), v.end());
 // sort(v.begin(), v.end(), [](auto a, auto b) { return a.second < b.second; });
+// map
+// 声明：map<string,int> mp;
+// 插入：mp.insert({"apple",3});        mp["apple"]=5;
+// 访问元素：如果key不存在，mp回自动创建该key,对应value为0:mp["apple"]
+// 查找元素：if(mp.find("apple")!=mp.end()){cout<<mp["apple"];}避免意外创建
+// 删除元素：mp.erase("apple");按key删除
+// 遍历mp:for(auto& p:mp){cout<<p.first<<p.second;}
+// 获取大小.size()清空.clear()
+// 遍历时不要修改map结构,it失效
+// 错误：遍历时删除元素
+// for (auto it = mp.begin(); it != mp.end(); it++) {
+//     if (it->second == 0) {
+//         mp.erase(it);  // it 失效，程序崩溃
+//     }
+// }
+
+// // 正确：
+// for (auto it = mp.begin(); it != mp.end();) {
+//     if (it->second == 0) {
+//         it = mp.erase(it);  // erase 返回下一个迭代器
+//     } else {
+//         it++;
+//     }
+// }
+// set
+// 声明：set<int> s;    set<int,greater<int>> s2;降序
+// 插入：s.insert(2);   s.insert(b.begin(),n.end());
+// 遍历：for(int x:s){}
+// 查找元素：if(s.find(5)!=s.end()){}
+// 删除元素：删除值为5的元素：s.erase(5);删除第一个元素：s.erase(s.begin())
+// s.empty(),s.size(),s.clear()
+// 检查元素是否存在s.count(3)，存在返回1
+// 求两个集合并集用set,3个set
+int main() {
+    set<int> s = {1, 3, 5, 7, 9};
+
+    // lower_bound：返回第一个 ≥ x 的迭代器
+    auto it1 = s.lower_bound(5);
+    if (it1 != s.end()) {
+        cout << "第一个 ≥ 5 的元素：" << *it1 << endl;  // 5
+    }
+
+    // upper_bound：返回第一个 > x 的迭代器
+    auto it2 = s.upper_bound(5);
+    if (it2 != s.end()) {
+        cout << "第一个 > 5 的元素：" << *it2 << endl;  // 7
+    }
+
+    // 找出区间 [3, 7] 内的元素
+    auto begin = s.lower_bound(3);
+    auto end = s.upper_bound(7);
+
+    cout << "区间 [3,7] 内的元素：";
+    for (auto it = begin; it != end; it++) {
+        cout << *it << " ";  // 3 5 7
+    }
+    cout << endl;
+
+    multiset<int> ms;//允许重复元素
+
+    ms.insert(3);
+    ms.insert(3);
+    ms.insert(5);
+
+    cout << ms.size() << endl;  // 3（允许重复）
+
+    // 统计某个值的个数
+    cout << ms.count(3) << endl;  // 2
+
+    // 删除一个元素（只删一个）
+    ms.erase(ms.find(3));
+
+    // 删除所有值为3的元素
+    ms.erase(3);
+    return 0;
+}
+// 不能修改set中的元素，先删除再插入
+// 不能直接s.erase(it), 要it = s.erase(it);  
